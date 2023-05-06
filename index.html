@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-int 和 Integer 有什么区别？" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/06/int%20%E5%92%8C%20Integer%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="article-date">
+  <time class="dt-published" datetime="2023-05-06T10:28:31.675Z" itemprop="datePublished">2023-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="int-和-Integer-有什么区别？"><a href="#int-和-Integer-有什么区别？" class="headerlink" title="int 和 Integer 有什么区别？"></a>int 和 Integer 有什么区别？</h2><h3 id="标准回答："><a href="#标准回答：" class="headerlink" title="标准回答："></a>标准回答：</h3><p>int是java中的八大基本数据类型之一。</p>
+<p>Java虽然号称万物皆对象，但是原始数据除外。</p>
+<p>integer是int的包装类，他由一个int类型字段存储数据，并且提供了基本操作，比如数学运算、int和字符之间转换等。在Java5中，引入了自动装箱和自动拆箱的功能，Java可以根据上下文，自动进行转换，极大地简化了相关编程。</p>
+<ul>
+<li>Java 5 中 Integer 类型的值在一定范围内会被缓存，这个范围是从 -128 到 127，也就是说，如果 Integer a &#x3D; 10，那么在下次创建 Integer b &#x3D; 10 时，b 会直接从缓存中获取，不会再次创建对象，这样可以节省内存和提高性能。这个缓存的机制是通过在 Integer 类中维护一个静态的数组来实现的。当使用 valueOf 方法创建 Integer 对象时，会先检查缓存中是否有对应的对象，如果有则直接返回缓存中的对象，如果没有则新建一个对象并加入缓存。因为在 Java 中，整型值的使用是非常普遍的，因此这个改进可以显著地提高程序的性能和减少内存开销。</li>
+</ul>
+<h3 id="问题分析："><a href="#问题分析：" class="headerlink" title="问题分析："></a>问题分析：</h3><p>这个问题理论上回答到这里算是差不多了，问题包含两个基本要素：原始数据类型、包装类。理解基本原理和用法已经足够满足日常需求了，但是要落实到具体场景，还是有很多问题需要仔细思考才能确定。</p>
+<p>面试官此时要是继续追问？</p>
+<ol>
+<li>编译阶段、运行时，自动装箱 &#x2F; 自动拆箱是发生在什么阶段？</li>
+<li>使用静态工厂方法 valueOf 会使用到缓存机制，那么自动装箱的时候，缓存机制起作用吗？</li>
+<li>为什么我们需要原始数据类型，Java 的对象似乎也很高效，应用中具体会产生哪些差异？</li>
+<li>阅读过 Integer 源码吗？分析下类或某些方法的设计要点。</li>
+</ol>
+<h3 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h3><h4 id="1、自动拆装箱"><a href="#1、自动拆装箱" class="headerlink" title="1、自动拆装箱"></a>1、自动拆装箱</h4><p>拆箱（Unboxing）和装箱（Boxing）是 Java 中基本类型和包装类型之间的转换。</p>
+<p>装箱（Boxing）是指将一个基本数据类型转换成对应的包装类型，例如将 int 转换成 Integer。Java 提供了自动装箱的功能，也就是说在需要使用包装类型的时候，Java 可以自动将基本类型转换为对应的包装类型。算是一种语法糖，可以理解为Java平台为我们自动进行了一些转换，保证不同的写法在运行时等价，发生在编译阶段，也就是生成的字节码是一致的。</p>
+<p>拆箱（Unboxing）则是指将一个包装类型转换成对应的基本数据类型，例如将 Integer 转换成 int。同样地，Java 提供了自动拆箱的功能，也就是说在需要使用基本类型的时候，Java 可以自动将包装类型转换为对应的基本类型。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>;  <span class="comment">// 定义一个 int 类型的变量 i，值为 10</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(i);  <span class="comment">// 将 int 类型的变量 i 转换成 Integer 类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> integer.intValue();  <span class="comment">// 将 Integer 类型的变量转换成 int 类型</span></span><br></pre></td></tr></table></figure>
+
+<p>自动装箱和拆箱的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> i;  <span class="comment">// 自动装箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> integer;  <span class="comment">// 自动拆箱</span></span><br></pre></td></tr></table></figure>
+
+<p>自动装箱和拆箱在 Java 5 中引入，可以方便地将基本类型和包装类型进行转换，提高了 Java 语言的灵活性和开发效率。但是，由于自动装箱和拆箱会涉及到对象的创建和销毁，会对性能产生一定的影响，因此在性能敏感的场合需要注意使用。</p>
+<p>原则上，建议避免无意中的装箱、拆箱行为，尤其是在性能敏感的场合，创建 10 万个<br>Java 对象和 10 万个整数的开销可不是一个数量级的，不管是内存使用还是处理速度，光<br>是对象头的空间占用就已经是数量级的差距了。</p>
+<h4 id="2、源码分析"><a href="#2、源码分析" class="headerlink" title="2、源码分析"></a>2、源码分析</h4><p>整体看一下 Integer 的职责，它主要包括各种基础的常量，比如最大值、最小值、位数<br>等；前面提到的各种静态工厂方法 valueOf()；获取环境变量数值的方法；各种转换方法，<br>比如转换为不同进制的字符串，如 8 进制，或者反过来的解析方法等。</p>
+<p>Integer 的缓存范围虽然默认是 -128 到 127，但是在特别的应用场景，比如我们明确知道应用会频繁使用更大的数值，这时候应该怎么办呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -XX:AutoBoxCacheMax=1000 YourApplication</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以通过这样设置。</p>
+<h4 id="3、原始类线程安全"><a href="#3、原始类线程安全" class="headerlink" title="3、原始类线程安全"></a>3、原始类线程安全</h4><p>原始数据类型操作是不是线程安全的呢？</p>
+<p>在Java中，原始数据类型的操作是线程安全的，因为它们是直接存储在内存中的基本类型，不需要担心多个线程之间的共享问题。</p>
+<p>例如，对于两个线程同时访问一个 int 类型的变量，由于 int 是原始数据类型，每个线程都会在自己的线程栈上分配一份该变量的内存空间，并且这两份内存空间互不干扰，因此不会发生线程安全问题。</p>
+<p>但需要注意的是，当多个线程同时访问对象的某个字段时，如果该字段是非原始数据类型，那么就可能会发生线程安全问题。在这种情况下，需要使用同步机制来保证线程安全。</p>
+<h4 id="4、Java-原始数据类型和引用类型局限性"><a href="#4、Java-原始数据类型和引用类型局限性" class="headerlink" title="4、Java 原始数据类型和引用类型局限性"></a>4、Java 原始数据类型和引用类型局限性</h4><p>Java 原始数据类型和引用类型都有各自的局限性，具体如下：</p>
+<ol>
+<li>原始数据类型的局限性</li>
+</ol>
+<ul>
+<li>原始数据类型不能够动态扩展，一旦声明，其大小和类型就固定不变，只能通过重新定义变量来改变值；</li>
+<li>原始数据类型不能为 null，它们必须始终包含一个值；</li>
+<li>原始数据类型不能直接参与面向对象的编程，因为它们不是对象，没有方法和属性；</li>
+<li>原始数据类型在传递参数时，是通过值传递，也就是传递的是数据的副本而不是本身，可能会带来性能和安全问题。</li>
+</ul>
+<ol start="2">
+<li>引用类型的局限性</li>
+</ol>
+<ul>
+<li>引用类型的变量指向的是一个对象的内存地址，因此当对象没有被引用时，仍然占用内存空间，可能会导致内存泄漏；</li>
+<li>引用类型的变量需要进行初始化才能使用，否则会抛出 NullPointerException 异常；</li>
+<li>引用类型的变量在传递参数时，传递的是对象的引用，而不是对象本身，因此对对象属性的修改会影响到所有引用该对象的变量，可能会带来安全问题。</li>
+</ul>
+<p>因此，在编写 Java 程序时，需要根据具体的业务场景和需求，合理地选择原始数据类型和引用类型，以充分发挥它们的优势，同时避免它们的局限性。</p>
+<h3 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h3><p>之前前面说了从空间角度，Java 对象要比原始数据类型开销大的多。你知道对象的内存结构是什么样的吗？比如，对象头的结构。如何计算或者获取某个 Java 对象的大小?</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/06/int%20%E5%92%8C%20Integer%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" data-id="clhbue9zb0001nsucdnhb14og" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-blogname" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/06/blogname/" class="article-date">
+  <time class="dt-published" datetime="2023-05-06T10:24:50.000Z" itemprop="datePublished">2023-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/06/blogname/">blogname</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/06/blogname/" data-id="clhbue9z70000nsucet5caa70" data-title="blogname" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/06/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-05-06T09:49:35.018Z" itemprop="datePublished">2023-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/06/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/06/hello-world/" data-id="clhbt1j7o0000b4ucgvwu30rx" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/06/int%20%E5%92%8C%20Integer%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/06/blogname/">blogname</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/06/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
